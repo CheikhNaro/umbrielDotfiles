@@ -1,0 +1,87 @@
+# ─────────────────────────── Animations (animations.lua) ───────────────────────────
+# Durées ≈ 1000/speed d'Hyprland. Courbes : x1,y1,x2,y2 (l'overshoot y>1 est
+# permis). Les styles fade in/out d'Hyprland fusionnent dans windows_out.
+
+[animation]
+enabled = true
+duration_ms = 300
+curve = "carBrake"
+
+[animation.beziers]
+easeOutQuint = [0.23, 1.0, 0.32, 1.0]
+hyprBounce = [0.08, 1.15, 0.38, 1.0]   # "bounce" Hyprland (overshoot 15 %)
+carBrake = [0.1, 0.9, 0.2, 1.0]        # effet voiture qui freine
+easeInOutSine = [0.37, 0.0, 0.63, 1.0] # symétrique, départ et arrivée adoucis
+easeInOutCubic = [0.65, 0.05, 0.36, 1.0]
+almostLinear = [0.5, 0.5, 0.75, 1.0]
+quick = [0.15, 0.0, 0.1, 1.0]
+tvOn = [0.0, 1.0, 0.0, 1.0]
+tvOff = [1.0, 0.0, 1.0, 0.0]
+
+# boingOut : spring Hyprland (mass=1, stiffness=80, dampening=6) converti en
+# ratio d'amortissement ζ = 6 / (2·√80) ≈ 0.34
+# boingIn : amorti un peu plus fort, pour une ouverture rebondissante sans claquement
+[animation.springs]
+boingOut = { damping = 0.34, stiffness = 80 }
+boingIn = { damping = 0.6, stiffness = 400 }
+
+# ── Effets personnalisés (shaders niri convertis pour Umbriel) ──
+# Umbriel ne lit pas `shader` sur un event d'animation : il faut un preset
+# `[effects.preset.<nom>]` puis un sélecteur `effect = "<nom>"` sur l'event.
+# Le chemin du shader est relatif à CE fichier (donc modules/).
+
+[effects.preset.glasswarpOpen]
+kind = "animation"
+shader = "../shader/glass-warp-open.glsl"
+
+[effects.preset.perlinClose]
+kind = "animation"
+shader = "../shader/crazy-parametric-close.glsl"
+# shader = "../shader/glass-warp-close.glsl"
+# shader = "../shader/plasma-flow-close.glsl"
+# shader = "../shader/ink-splash-close.glsl"
+# shader = "../shader/perlin-close.glsl"
+
+# [effects.preset.layerReveal]
+# kind = "animation"
+# shader = "../shader/reveal.glsl"
+
+[animation.windows_in]
+enabled = true
+duration_ms = 250
+effect = "glasswarpOpen"
+
+[animation.windows_out]
+enabled = true
+effect = "perlinClose"
+duration_ms = 1300
+curve = "easeOutQuint"
+
+[animation.windows_move]
+enabled = true
+duration_ms = 250
+curve = "easeOutQuint" 
+
+# Workspaces (effet voiture qui freine ; slidevert est natif selon l'axe)
+[animation.workspaces]
+enabled = true
+duration_ms = 600
+curve = "carBrake"
+
+# Layers (rofi, wlogout…)
+[animation.layers]
+enabled = true
+duration_ms = 250
+curve = "almostLinear"
+
+# Scratchpad (ex specialWorkspace slidevert)
+[animation.scratchpad]
+enabled = true
+duration_ms = 400
+curve = "ease"
+
+# Bordure de focus (speed 5.39 ≈ 190 ms)
+# [animation.border]
+# enabled = false
+# duration_ms = 190
+# curve = "easeOutQuint"

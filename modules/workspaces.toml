@@ -1,0 +1,5 @@
+# ─────────────────────────── Workspaces (decoration.lua) ───────────────────────────
+[workspaces]
+back_and_forth = true   
+
+

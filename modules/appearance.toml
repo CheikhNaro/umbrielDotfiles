@@ -1,0 +1,22 @@
+# ─────────────────────────── Apparence ───────────────────────────
+[appearance]
+prefer_no_csd = true
+border_width = 0        # border_size = 0
+corner_radius = 8       # rounding = 12
+drag_opacity = 0.8
+opaque_fullscreen = true
+
+[appearance.shadow]
+enabled = false          # shadow.enabled = false
+
+# Si tu veux réactiver le blur (les règles layer_rule ci-dessous l'activent pour Noctalia/wlogout/quickshell)
+
+[appearance.blur]     
+enabled = true
+optimized = false       # sinon le blur échantillonne le fond d'écran en cache (rien derrière les panneaux)
+passes = 2
+radius = 8          
+brightness = 1
+contrast = 1
+
+

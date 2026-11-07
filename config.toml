@@ -1,0 +1,23 @@
+# Umbriel — resplit depuis config.toml.bak (structure vraie)
+# Modifications récentes conservées manuellement après split
+
+[include]
+files = [
+  "modules/env.toml",
+  "modules/autostart.toml",
+  "modules/workspaces.toml",
+  "modules/layout.toml",
+  "modules/appearance.toml",
+  "modules/input.toml",
+  "modules/keybinds.toml",
+  "modules/scratchpad.toml",
+  "modules/rules.toml",
+  "modules/layer_rules.toml",
+  "modules/animations.toml",
+  "modules/monitors.toml",
+]
+
+[include.optional]
+files = [
+  "noctalia.toml",
+]

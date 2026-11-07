@@ -1,0 +1,180 @@
+# ─────────────────────────── Keybinds (binds.lua) ───────────────────────────
+[keybinds]
+# Lancer des applications
+# ⚠ Pour changer de terminal : décommente le bloc voulu (wezterm/kitty) ET
+# commente les trois lignes du bloc actif — TOML interdit les clés en double.
+# La taille des flottants (860x530) est garantie par les window_rules
+# app_id "floatterm"/"floatyazi" plus bas : pas d'option de taille nécessaire.
+
+# ── foot ──
+"Mod+Return" = { action = "spawn foot", repeat = false }
+"Mod+K" = { action = "spawn foot --app-id floatterm --window-size-pixels=860x530", repeat = false }
+"Mod+Shift+E" = { action = "spawn foot --app-id floatyazi --window-size-pixels=860x530 -e yazi", repeat = false }
+
+# ── wezterm ──
+# "Mod+Return" = { action = "spawn wezterm", repeat = false }
+# "Mod+K" = { action = "spawn wezterm start --always-new-process --class floatterm", repeat = false }
+# "Mod+Shift+E" = { action = "spawn wezterm start --always-new-process --class floatyazi yazi", repeat = false }
+
+# ── kitty ──
+# "Mod+Return" = { action = "spawn kitty", repeat = false }
+# "Mod+K" = { action = "spawn kitty --class floatterm", repeat = false }
+# "Mod+Shift+E" = { action = "spawn kitty --class floatyazi yazi", repeat = false }
+
+"Mod+C" = { action = "spawn flatpak run org.gnome.Calculator", repeat = false }
+"Mod+E" = { action = "spawn nautilus", repeat = false }
+# "Mod+E" = { action = "spawn strata", repeat = false }
+"Mod+B" = { action = "spawn flatpak run re.sonny.Junction", repeat = false }
+"Mod+2" = { action = "spawn env MOZ_ENABLE_WAYLAND=1 GDK_BACKEND=wayland ~/Applications/Zen/zen", repeat = false }  # ⚠ remplace le built-in workspace-switch 2 (comme dans ta config Hyprland)
+"Mod+Q" = { action = "spawn flatpak run org.gtaf.quran", repeat = false }
+"Mod+S" = { action = "spawn flatpak run com.spotify.Client", repeat = false }
+"Mod+T" = { action = "spawn ~/Applications/Telegram/Telegram", repeat = false }  # ⚠ remplace le built-in window-toggle-floating
+"Mod+D" = { action = "spawn ~/.config/discord/Discord --enable-features=UseOzonePlatform --ozone-platform=wayland", repeat = false }
+"Mod+Y" = { action = "spawn noctalia msg plugin alexander/screen-toolkit:service all ocr", repeat = false }
+"Mod+L" = { action = "spawn /usr/bin/wlogout -b 5 -c 16 -r 16 -m 0 -n --protocol layer-shell", repeat = false }
+# "Mod+X" = { action = "spawn noctalia msg plugin oldirtty/color_picker:service all pick", repeat = false }
+"Mod+X" = { action = "spawn noctalia msg plugin alexander/screen-toolkit:service all colorPicker", repeat = false }
+"Mod+Shift+X" = { action = "spawn noctalia msg panel-toggle oldirtty/color_picker:panel", repeat = false }
+
+# Wallpapers
+"Mod+W" = { action = "spawn bash ~/.config/umbriel/scripts/quickpaper.sh", repeat = false }
+"Mod+Shift+W" = { action = "spawn noctalia msg panel-toggle noctalia/wallhaven:browser", repeat = false }
+
+# Réglages Noctalia
+"Mod+I" = { action = "spawn noctalia msg settings-open", repeat = false }
+"Mod+Shift+D" = { action = "spawn noctalia msg desktop-widgets-edit", repeat = false }
+"Mod+Dollar" = { action = "spawn noctalia msg panel-toggle abuamar142/qr-share:panel", repeat = false }
+# "Mod+Alt+P" = { action = "spawn noctalia msg panel-toggle icefish/phone-connect:details_widget", repeat = false }
+
+# Fermer la fenêtre active
+"Ctrl+Q" = { action = "window-close", repeat = false }
+
+# Noctalia control center
+"Mod+Space" = { action = "spawn noctalia msg panel-toggle control-center", repeat = false }
+"Mod+N" = { action = "spawn noctalia msg panel-toggle control-center notifications", repeat = false }
+
+# Launcher (variante Umbriel du script : attend la layer via "umbriel layers")
+"Alt+Space" = { action = "spawn bash $HOME/.config/rofi/scripts/rofi-dropdown.sh", repeat = false }
+
+# Switcher de fenêtres — snappy-switcher (le window-switcher Noctalia déraille).
+# Le daemon est lancé par l'autostart de general.toml ; sans lui, le bind ne fait
+# rien. --mod doit correspondre au modificateur du bind, sinon le panneau affiche
+# une bannière CONFIG ERROR. cooldown_ms : Umbriel répète à repeat_rate (100 Hz),
+# on limite à ~5 sauts/s quand on maintient Alt+Tab.
+"Alt+Tab" = { action = "spawn snappy-switcher next --mod alt", cooldown_ms = 200 }
+"Mod+Tab" = { action = "spawn noctalia msg window-switcher", repeat = false }
+
+# Flottant : la taille (860x530) vient de la règle attrape-tout en tête de
+# rules.toml — Umbriel l'applique au premier passage en flottant de chaque fenêtre.
+"Mod+F" = { action = "window-toggle-floating", repeat = false }
+
+# Layout stacking sur tout le workspace actif (bascule stacking ↔ layout
+# configuré dans layout.toml) : le layout natif s'applique aussi aux
+# fenêtres ouvertes ensuite.
+"Mod+Shift+F" = { action = "spawn bash $HOME/.config/umbriel/scripts/cycle-layout.sh", repeat = false }
+
+"Mod+Up" = { action = "window-toggle-maximize-to-edges", repeat = false }
+"Mod+Down" = { action = "window-toggle-maximize-to-edges", repeat = false }
+
+# GUI positionnement des moniteurs
+"Mod+M" = { action = "spawn python3 ~/.config/umbriel/scripts/umbriel_monitor_gui.py", repeat = false }
+
+# Bascule écran : étendu ↔ interne seul (⚠ remplace le built-in Mod+P = épingler)
+"Mod+P" = { action = "spawn bash ~/.config/umbriel/scripts/toggle-monitor.sh", repeat = false }
+
+# Focus directionnel
+"Alt+Left" = "window-focus-left"
+"Alt+Right" = "window-focus-right"
+"Alt+Up" = "window-focus-up"
+"Alt+Down" = "window-focus-down"
+
+# Déplacer/échanger — Hyprland swap directionnel n'existe pas ; le plus proche :
+"Mod+Alt+Left" = "column-move-left"
+"Mod+Alt+Right" = "column-move-right"
+"Mod+Alt+Up" = "window-move-up"
+"Mod+Alt+Down" = "window-move-down"
+
+# Resize — actions adaptatives : 0.05 de la zone utile (≈ 96 px), répétition si
+# maintenu. En master, seule la largeur bouge (fraction master) ; en scrolling
+# c'est la largeur de colonne, en dwindle les splits. Les flottants ne se
+# redimensionnent pas au clavier : Mod+clic droit à la souris.
+"Mod+Shift+Left" = "window-modify-primary-extent -0.05"
+"Mod+Shift+Right" = "window-modify-primary-extent 0.05"
+"Mod+Shift+Up" = "window-modify-secondary-extent -0.05"
+"Mod+Shift+Down" = "window-modify-secondary-extent 0.05"
+
+# Workspaces 1-5 (eDP-1) et 6-10 (HDMI-A-1) — sélection par NOM : un nombre nu
+# est une POSITION sur l'écran focalisé (sur HDMI-A-1, la position 1 = "6").
+"Mod+1" = { action = "workspace-switch --name 1", repeat = false }
+"Mod+3" = { action = "workspace-switch --name 3", repeat = false }
+"Mod+4" = { action = "workspace-switch --name 4", repeat = false }
+"Mod+5" = { action = "workspace-switch --name 5", repeat = false }
+"Mod+6" = { action = "workspace-switch --name 6", repeat = false }
+"Mod+7" = { action = "workspace-switch --name 7", repeat = false }
+"Mod+8" = { action = "workspace-switch --name 8", repeat = false }
+"Mod+9" = { action = "workspace-switch --name 9", repeat = false }
+
+# Déplacer la fenêtre vers le workspace N (Shift+N)
+"Mod+Shift+1" = { action = "window-move-to-workspace --name 1", repeat = false }
+"Mod+Shift+2" = { action = "window-move-to-workspace --name 2", repeat = false }
+"Mod+Shift+3" = { action = "window-move-to-workspace --name 3", repeat = false }
+"Mod+Shift+4" = { action = "window-move-to-workspace --name 4", repeat = false }
+"Mod+Shift+5" = { action = "window-move-to-workspace --name 5", repeat = false }
+"Mod+Shift+6" = { action = "window-move-to-workspace --name 6", repeat = false }
+"Mod+Shift+7" = { action = "window-move-to-workspace --name 7", repeat = false }
+"Mod+Shift+8" = { action = "window-move-to-workspace --name 8", repeat = false }
+"Mod+Shift+9" = { action = "window-move-to-workspace --name 9", repeat = false }
+"Mod+Shift+0" = { action = "window-move-to-workspace --name 10", repeat = false }
+
+# Scratchpad "magic" (ex special workspace)
+"Mod+H" = { action = "scratchpad-toggle magic", repeat = false }
+#"Mod+Shift+H" = { action = "window-move-to-scratchpad magic", repeat = false }
+#"Mod+Alt+H" = { action = "window-toggle-scratchpad magic", repeat = false }
+"Mod+Shift+H" = { action = "window-toggle-scratchpad magic", repeat = false }
+#"Mod+Alt+H" = { action = "window-toggle-scratchpad magic", repeat = false }
+
+# Molette : navigation workspaces (remplace scroll_workspaces.sh qui est hyprctl)
+"Mod+WheelUp" = { action = "workspace-previous", cooldown_ms = 150 }
+"Mod+WheelDown" = { action = "workspace-next", cooldown_ms = 150 }
+
+# Page Up/Down : navigation, +Alt en déplaçant la fenêtre
+"Mod+Page_Down" = { action = "workspace-next", repeat = false }
+"Mod+Page_Up" = { action = "workspace-previous", repeat = false }
+"Mod+Alt+Page_Down" = { action = "window-move-to-workspace-next", repeat = false }
+"Mod+Alt+Page_Up" = { action = "window-move-to-workspace-previous", repeat = false }
+
+# Drag/resize souris : natif (Mod+clic gauche = déplacer, Mod+clic droit =
+# redimensionner en bordure). Décommente pour panner le strip en layout scrolling :
+# "Mod+MouseMiddle" = "layout-scroll-drag"
+
+# Touches multimédia (Noctalia) — répétition + actives écran verrouillé
+"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false }
+"XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute", allow_when_locked = true, repeat = false }
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true }
+"XF86AudioNext" = { action = "spawn playerctl next", allow_when_locked = true, repeat = false }
+"XF86AudioPause" = { action = "spawn playerctl play-pause", allow_when_locked = true, repeat = false }
+"XF86AudioPlay" = { action = "spawn playerctl play-pause", allow_when_locked = true, repeat = false }
+"XF86AudioPrev" = { action = "spawn playerctl previous", allow_when_locked = true, repeat = false }
+
+# Capture d'écran —  (screenshot-region / screenshot-fullscreen / annotate)
+"Mod+Print" = { action = "spawn noctalia msg screenshot-fullscreen", repeat = false }
+"Print" = { action = "spawn noctalia msg screenshot-region", repeat = false }
+"Alt+Print" = { action = "spawn bash ~/.config/umbriel/scripts/screenshot.sh", repeat = false }
+"Mod+G" = { action = "spawn noctalia msg panel-toggle alexander/screen-toolkit:panel", repeat = false }
+
+# Emoji picker — rofi (le picker Quickshell quickSoundWave est désactivé).
+"Mod+Period" = { action = "spawn bash ~/.config/rofi/scripts/rofi-emoji.sh", repeat = false, cooldown_ms = 500 }
+
+# Historique presse-papiers (Noctalia)
+"Mod+V" = { action = "spawn noctalia msg panel-toggle clipboard", repeat = false }
+
+# Rechargement (Umbriel recharge déjà tout seul à la sauvegarde du fichier)
+"Mod+Shift+C" = { action = "config-reload", repeat = false }
+
+# Overview 
+"Mod" = { action = "overview-toggle", repeat = false }
+
+

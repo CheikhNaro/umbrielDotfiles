@@ -1,0 +1,275 @@
+# ─────────────────────────── Règles de fenêtres (window_rules.lua) ───────────────────────────
+# Umbriel combine toutes les règles qui matchent ; la dernière gagne sur un
+# même champ. persistent_size n'existe pas (les flottants gardent leur taille
+# d'eux-mêmes) ; suppress_event = "maximize" est couvert par
+# honor_restored_maximize = false ; l'idle-inhibit n'est PAS configurable par
+# règle (protocole wayland idle-inhibit, à la charge de l'application).
+
+# Taille par défaut de TOUS les flottants (l'équivalent du mod+F d'Hyprland) :
+# Umbriel mémorise la règle et l'applique au premier passage en flottant, y
+# compris quand il vient de window-toggle-floating (Mod+F). En premier du
+# fichier car la dernière règle qui set un champ gagne : chaque règle par-app
+# plus bas garde sa propre taille. is_dialog=false évite d'imposer 860x530 aux
+# dialogues (message, préférences) qui se dimensionnent eux-mêmes.
+
+[[window_rule]]
+match.is_dialog = false
+default_floating_size_px = { width = 860, height = 530 }
+ 
+[[window_rule]]
+match.app_id = '^Dialog$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 308, height = 102 }   # taille naturelle des boîtes de question
+default_pinned = true
+
+[[window_rule]]
+# opacity = 0.85
+# blur = true
+# blur_optimized = true
+# blur_ignore_alpha = 0.1
+# blur_popups = false
+
+# Réglages Noctalia (ton flottant 1080x920 — couvre aussi l'app-id ".Settings")
+[[window_rule]]
+match.app_id = '^dev\.noctalia\.Noctalia'
+default_floating = true
+default_floating_size_px = { width = 980, height = 500 }
+
+# Paramètres Noctalia (même app-id que le shell) : tuilé, pas flottant.
+[[window_rule]]
+match.app_id = '^dev\.noctalia\.Noctalia$'
+match.title = '^Paramètres Noctalia$'
+default_floating = false
+
+# Partage d'écran Noctalia (règle du config packagé)
+[[window_rule]]
+match.app_id = '^dev\.noctalia\.UmbrielSharePicker$'
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+# Picture-in-Picture des navigateurs (règle du config packagé)
+[[window_rule]]
+match.title = "^(Picture-in-Picture|Picture in picture)$"
+default_floating = true
+default_maximize = false
+default_position = { x = 20, y = 20, anchor = "bottom_right" }
+
+# Satty (annotation de capture) — flottant, centré, 1920x1080, sans animation
+# (la désactivation d'animation par fenêtre n'existe pas dans Umbriel)
+[[window_rule]]
+match.app_id = '^com\.gabm\.satty$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 1920, height = 1080 }
+
+# System Monitor
+[[window_rule]]
+match.app_id = '^org\.gnome\.SystemMonitor$'
+default_floating = true
+default_floating_size_px = { width = 1000, height = 900 }
+
+# XAMPP
+[[window_rule]]
+match.app_id = '^package$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+
+[[window_rule]]
+match.app_id = '^Dialog$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+
+# Spotify (classe "spotify" + initial_class "Spotify" fusionnées)
+[[window_rule]]
+match.app_id = '^(spotify|Spotify)$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 1400, height = 800 }
+# ⚠ idle-inhibit "focus" et interdiction du fullscreen non convertibles
+
+# Calculatrice
+[[window_rule]]
+match.app_id = '^org\.gnome\.Calculator$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 420, height = 600 }
+
+# impression
+[[window_rule]]
+match.app_id = 'Impression'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 450, height = 700 }
+
+# LocalSend
+[[window_rule]]
+match.app_id = '^localsend_app$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 450, height = 700 }
+
+# Horloge
+[[window_rule]]
+match.app_id = '^org\.gnome\.clocks$'
+default_floating = true
+default_floating_size_px = { width = 420, height = 600 }
+
+# Amberol (sans centrage, comme avant)
+[[window_rule]]
+match.app_id = '^io\.bassi\.Amberol$'
+default_floating = true
+default_floating_size_px = { width = 250, height = 200 }
+
+# GNOME Notes (sans centrage)
+[[window_rule]]
+match.app_id = '^org\.gnome\.Notes$'
+default_floating = true
+default_floating_size_px = { width = 700, height = 600 }
+
+# ProtonMail (PWA Chrome)
+[[window_rule]]
+match.app_id = '^chrome-jnpecgipniidlgicjocehkhajgdnjekh-Default$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 1400, height = 900 }
+
+# Whatsie
+[[window_rule]]
+match.app_id = '^zapfast'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 1260, height = 820 }
+
+# Thunderbird
+[[window_rule]]
+match.app_id = '^thunderbird$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 1400, height = 900 }
+
+# Junction
+[[window_rule]]
+match.app_id = '^re\.sonny\.Junction$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 500, height = 200 }
+default_pinned = true
+
+# Nautilus
+[[window_rule]]
+match.app_id = '^org\.gnome\.Nautilus$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# Strata
+[[window_rule]]
+match.app_id = 'Strata'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# mpv
+[[window_rule]]
+match.app_id = '^mpv$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# Nemo
+[[window_rule]]
+match.app_id = '^nemo$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# qView
+[[window_rule]]
+match.app_id = '^com.interversehq.qView$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# qimgv
+[[window_rule]]
+match.app_id = '^qimgv$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# Gapless
+[[window_rule]]
+match.app_id = '^com\.github\.neithern\.g4music$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 680, height = 530 }
+
+# Sélecteur de fichiers portal
+[[window_rule]]
+match.app_id = '^xdg-desktop-portal-gtk$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 890 }
+
+# Loupe
+[[window_rule]]
+match.app_id = '^org\.gnome\.Loupe$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+default_floating_size_px = { width = 860, height = 530 }
+
+# ONLYOFFICE
+[[window_rule]]
+match.app_id = '^(ONLYOFFICE|DesktopEditors)$'
+default_floating = true
+default_position = { x = 0, y = 0 }
+
+# GUI de positionnement des moniteurs
+[[window_rule]]
+match.app_id = '^umbriel-monitor-gui$'
+default_floating = true
+default_floating_size_px = { width = 900, height = 580 }
+
+# Terminaux flottants (Mod+K / Mod+Shift+E) — identifiés par --app-id
+[[window_rule]]
+match.app_id = '^floatterm$'
+default_floating = true
+default_floating_size_px = { width = 860, height = 530 }
+
+[[window_rule]]
+match.app_id = '^(foot|floatterm|kitty|org\.wezfurlong\.wezterm)$'
+blur = true
+blur_ignore_alpha = 0.1
+blur_popups = true
+
+[[window_rule]]
+match.app_id = '^(floatyazi)$'
+default_floating = true
+default_floating_size_px = { width = 860, height = 530 }
+blur = true
+blur_ignore_alpha = 0.1
+blur_popups = true
+
+[[window_rule]]
+match.app_id = '^(keyshow)$'
+default_floating = true
+default_floating_size_px = { width = 507, height = 819 }
+opacity = 0.9
+blur = true
+blur_ignore_alpha = 0.1
+blur_popups = true
+
+# Miroir d'écran (wl-mirror) : plein écran, flottant, sans vol de focus
+[[window_rule]]
+match.app_id = '^(at\.yrlf\.wl_mirror|wl-mirror)$'
+default_floating = true
+default_fullscreen = true
+default_focused = false
+
+# Tearing jeux — comme dans ta config (allow_tearing désactivé, règle gardée
+# pour référence). Il faudrait en plus tearing = true sur [output.*].
+# [[window_rule]]
+# match.content_type = "game"
+# tearing = true
+

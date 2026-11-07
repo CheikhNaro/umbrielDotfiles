@@ -1,0 +1,40 @@
+# ─────────────────────────── Layer rules ───────────────────────────
+# (les layer rules Umbriel ne gèrent que le blur — pas d'animation par surface)
+
+# Surfaces Noctalia (barre, notifications, dock, panneaux, OSD, widgets)
+[[layer_rule]]
+# match.namespace = '^noctalia-(bar-[^"]+|notification|panel|attached-panel|desktop-widget-[^"]*)$'
+match.namespace = 'noctalia'
+blur = true
+blur_ignore_alpha = 0.1
+blur_popups = true
+blur_optimized = false
+
+# Widgets du bureau Noctalia (surface par widget, couche Bottom)
+[[layer_rule]]
+match.namespace = '^noctalia-desktop-widget'
+blur = true
+blur_ignore_alpha = 0.01
+blur_optimized = true
+
+# Centre de contrôle et panneaux Noctalia (overlay flottant au-dessus des fenêtres)
+[[layer_rule]]
+# match.namespace = '^noctalia-(attached-)?panel$'
+# blur = true
+# blur_ignore_alpha = 0.01
+# blur_optimized = false
+
+# wlogout — ex layer_rule logout_dialog (blur + ignore_alpha 0.7)
+[[layer_rule]]
+match.namespace = '^logout_dialog$'
+blur = true
+blur_ignore_alpha = 0.01
+blur_popups = true
+
+
+# rofi
+[[layer_rule]]
+match.namespace = 'rofi'
+blur = true
+blur_ignore_alpha = 0.01
+blur_popups = false

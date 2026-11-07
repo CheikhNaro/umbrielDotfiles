@@ -1,0 +1,16 @@
+# ─────────────────────────── Autostart (autostart.lua) ───────────────────────────
+# Lancé à chaque session Umbriel. mod_key/flags divers → env.toml.
+
+[general]
+autostart = [
+    "noctalia",
+    "snappy-switcher --daemon",
+    "/usr/libexec/hyprpolkitagent",
+    "/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh",
+    "xhost +SI:localuser:root",
+    "~/.config/umbriel/scripts/output-workspaces.sh daemon",
+    "~/.local/bin/clean-singleton-locks",
+    "qs -d -p ~/.config/quickshell/quickSoundWave",
+    "bash -c 'gsettings set org.gnome.desktop.interface gtk-theme \"adw-gtk3\"; gsettings set org.gnome.desktop.interface color-scheme prefer-dark; ln -sfn \"$HOME/.cache/current-wallpaper\" /usr/share/sddm/themes/pixie/assets/current-wallpaper 2>/dev/null'",
+    #"bash ~/.config/umbriel/scripts/apply-layout.sh",
+]
