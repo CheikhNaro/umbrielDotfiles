@@ -37,12 +37,35 @@ Modular TOML configuration loaded via `config.toml`:
 
 ---
 
-## Dependencies
+## Dependencies (Fedora)
 
-- **Compositor & Shell**: `umbriel`, `noctalia`
-- **Session Utilities**: `snappy-switcher`, `hyprpolkitagent` (or `polkit-gnome`), `gnome-keyring`
-- **Tools**: `wlr-randr`, `jq`, `wl-clipboard`, `wtype`, `grim`, `slurp`
-- **GUI & Widgets**: `python3-gobject`, `python3-cairo`, `quickshell`
+Install all runtime dependencies and system tools via DNF:
+
+```bash
+sudo dnf install -y \
+    wlr-randr \
+    jq \
+    wl-clipboard \
+    wtype \
+    grim \
+    slurp \
+    foot \
+    nautilus \
+    wlogout \
+    playerctl \
+    xhost \
+    gnome-keyring \
+    python3 \
+    python3-gobject \
+    python3-cairo
+```
+
+> **Compositor & Desktop Shell:**  
+> - **[umbriel](https://github.com/noctalia-dev/umbriel)**
+> - **[noctalia](https://github.com/noctalia-dev/noctalia)**
+> - **[quickshell](https://github.com/outfoxxed/quickshell)**
+> - **[snappy-switcher](https://github.com/CheikhNaro)** (or your preferred Wayland window switcher)
+> - Polkit agent: `hyprpolkitagent` or `polkit-gnome`
 
 ---
 
@@ -65,4 +88,5 @@ Enrich your desktop setup with other modules:
 - **[quickSoundWave](https://github.com/CheikhNaro/quickSoundWave)** — Sound-reactive audio visualizer and media widget built with Quickshell.
 - **[quickPaper](https://github.com/CheikhNaro/quickPaper)** — Interactive wallpaper switcher built with Quickshell.
 - **[rofiMojiPicker](https://github.com/CheikhNaro/rofiMojiPicker)** — Categorized emoji picker for Rofi on Wayland.
+- **[ffthemes](https://github.com/CheikhNaro/ffthemes)** — Curated collection of Fastfetch themes.
 - **[Wallpapers](https://github.com/CheikhNaro/Wallpapers)** — Curated wallpaper collection.
