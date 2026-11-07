@@ -59,10 +59,10 @@ chmod +x ~/.config/umbriel/scripts/*.sh ~/.config/umbriel/scripts/*.py
 
 ## Ecosystem & Companion Repositories
 
-Enrich your desktop setup with companion modules:
+Enrich your desktop setup with other modules:
 
 - **[umbrielMonitor](https://github.com/CheikhNaro/umbrielMonitor)** — Drag-and-drop monitor manager GUI for Umbriel.
-- **[quickSoundWave](https://github.com/CheikhNaro/quickSoundWave)** — Sound-reactive audio visualizer and media widget for Quickshell.
-- **[quickPaper](https://github.com/CheikhNaro/quickPaper)** — Interactive wallpaper switcher for Quickshell.
+- **[quickSoundWave](https://github.com/CheikhNaro/quickSoundWave)** — Sound-reactive audio visualizer and media widget built with Quickshell.
+- **[quickPaper](https://github.com/CheikhNaro/quickPaper)** — Interactive wallpaper switcher built with Quickshell.
 - **[rofiMojiPicker](https://github.com/CheikhNaro/rofiMojiPicker)** — Categorized emoji picker for Rofi on Wayland.
 - **[Wallpapers](https://github.com/CheikhNaro/Wallpapers)** — Curated wallpaper collection.
