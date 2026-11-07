@@ -1,4 +1,4 @@
-# Umbriel Dotfiles
+# Umbriel Dotfiles ... on Fedora BTW
 
 Complete, modular configuration for **[Umbriel](https://github.com/noctalia-dev/umbriel)** compositor paired with the **[Noctalia](https://github.com/noctalia-dev/noctalia)** shell.
 
